@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <router-view/>
   </div>
 </template>
 
@@ -11,4 +12,10 @@ export default {
 }
 </script>
 <style>
+@import url('assets/css/base.css');
+@import url('assets/fonts/iconfont.css');
+
+#app {
+  height: 100%;
+}
 </style>
