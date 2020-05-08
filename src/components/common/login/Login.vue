@@ -46,6 +46,7 @@ export default {
     }
   },
   methods: {
+    // 用户点击取消按钮的话，需要清空用户的输入form表单内容
     resetBtnClick () {
       this.$refs.loginFormRef.resetFields()
     },
@@ -61,7 +62,7 @@ export default {
             this.$message.success('登录成功')
             // 登录成功的同时跳转到home页面
             // 1、保存token到sessionStorage
-            console.log(res)
+            // console.log(res)
             window.sessionStorage.setItem('token', res.data.token)
             // 2、编程式导航跳转到主页
             this.$router.push('/home')
