@@ -39,7 +39,7 @@
             <el-button type="primary" icon="el-icon-edit" size="mini" @click="editUserClick(scope.row.id)"></el-button>
             <el-button type="danger" icon="el-icon-delete" size="mini" @click="deleteUserClick(scope.row.id)"></el-button>
             <el-tooltip effect="dark" content="分配角色" :enterable="false" placement="top">
-              <el-button type="warning" icon="el-icon-setting" size="mini"></el-button>
+              <el-button type="warning" icon="el-icon-setting" size="mini" @click="asignRoleClick(scope.row)"></el-button>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -105,11 +105,35 @@
         <el-button type="primary" @click="editUserSubmit">确 定</el-button>
       </span>
     </el-dialog>
+    <el-dialog
+      title="分配该用户的角色"
+      :visible.sync="asignRoleDialogVisible"
+      width="50%"
+       @close="asignRoleClose">
+       <div>
+         <p>当前的用户 ：{{userInfo.username}}</p>
+         <p>当前的角色 ：{{userInfo.role_name}}</p>
+         <p>分配新角色 ：
+           <el-select v-model="selectedRole" placeholder="请选择用户角色">
+            <el-option
+              v-for="item in roleList"
+              :key="item.id"
+              :label="item.roleName"
+              :value="item.id">
+            </el-option>
+          </el-select>
+         </p>
+       </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="asignRoleDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="asignRoleSubmit">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
-import { getUserList, changeUserState, addNewUser, getIdUser, editUser, deleteUser } from 'network/users.js'
+import { getUserList, changeUserState, addNewUser, getIdUser, editUser, deleteUser, getRoleList, submitNewRole } from 'network/users.js'
 export default {
   name: 'Users',
   data () {
@@ -181,7 +205,11 @@ export default {
           { required: true, message: '请输入用户邮箱', trigger: 'blur' },
           { validator: checkEmail, trigger: 'blur' }
         ]
-      }
+      },
+      asignRoleDialogVisible: false,
+      userInfo: {},
+      roleList: [],
+      selectedRole: ''
     }
   },
   created () {
@@ -243,6 +271,14 @@ export default {
         })
       })
     },
+    // 点击编辑按钮，弹出对话框
+    editUserClick (id) {
+      // 对话框里面要绑定点击的那个条目的id的相关数据，所以要做网络请求
+      getIdUser(id).then(res => {
+        this.editUser = res.data
+      })
+      this.editDialogVisible = true
+    },
     // 编辑用户之后也要做预验证，验证完事之后就提交
     editUserSubmit () {
       this.$refs.editUserFormRef.validate(valid => {
@@ -258,14 +294,6 @@ export default {
           this.editDialogVisible = false
         })
       })
-    },
-    // 点击操作里面的编辑按钮，弹出对话框
-    editUserClick (id) {
-      // 对话框里面要绑定点击的那个条目的id的相关数据，所以要做网络请求
-      getIdUser(id).then(res => {
-        this.editUser = res.data
-      })
-      this.editDialogVisible = true
     },
     // 监听删除按钮的点击事件
     deleteUserClick (id) {
@@ -285,11 +313,43 @@ export default {
           message: '已取消删除'
         })
       })
+    },
+    // 点击分配权限button
+    asignRoleClick (userInfo) {
+      // 展示用户信息
+      this.userInfo = userInfo
+      // 去请求所有的角色
+      getRoleList().then(res => {
+        if (res.meta.status !== 200) return
+        this.roleList = res.data
+      })
+      this.asignRoleDialogVisible = true
+    },
+    // 分配用户角色对话框关闭
+    asignRoleClose () {
+      // 要将之前为别的用户分配的角色给清空
+      this.userInfo = {}
+      this.selectedRole = ''
+    },
+    // 提交为用户分配的角色
+    asignRoleSubmit () {
+      // 判断有没有分配角色
+      if (!this.selectedRole) return this.$message.error('请为用户分配新角色！')
+      submitNewRole(`users/${this.userInfo.id}/role`, this.selectedRole).then(res => {
+        if (res.meta.status !== 200) return this.$message.error('分配角色提交失败！')
+        this.$message.success('分配角色成功！')
+        this.getUserLists()
+        this.asignRoleDialogVisible = false
+      })
     }
   }
 }
 </script>
 
 <style scoped>
+.el-dialog div p{
+  margin: 15px 5px;
+  font-size: 13px;
+}
 
 </style>

@@ -47,3 +47,20 @@ export function deleteUser (config) {
     }
   })
 }
+
+export function getRoleList () {
+  return request({
+    url: 'roles',
+    method: 'GET'
+  })
+}
+
+export function submitNewRole (url, rid) {
+  return request({
+    url,
+    method: 'PUT',
+    data: {
+      rid
+    }
+  })
+}

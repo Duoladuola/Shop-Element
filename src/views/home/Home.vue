@@ -64,7 +64,6 @@ export default {
   created () {
     // 获取侧边栏的数据
     getHomeAside().then(res => {
-      console.log(res)
       if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
       this.asideList = res.data
       // console.log(this.asideList)

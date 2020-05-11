@@ -1,8 +1,8 @@
 import { request } from './request'
 
-export function getHomeAside () {
+export function getRightsList () {
   return request({
-    url: 'menus',
+    url: 'rights/list',
     method: 'GET'
   })
 }
