@@ -9,6 +9,7 @@ const Welcome = () => import('views/home/childCpn/Welcome')
 const Users = () => import('views/home/childCpn/Users')
 const Rights = () => import('views/home/childCpn/power/Rights')
 const Roles = () => import('views/home/childCpn/power/Roles')
+const Category = () => import('views/home/childCpn/goods/Category')
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -21,7 +22,8 @@ const routes = [
       { path: '/welcome', component: Welcome },
       { path: '/users', component: Users },
       { path: '/rights', component: Rights },
-      { path: '/roles', component: Roles }
+      { path: '/roles', component: Roles },
+      { path: '/categories', component: Category }
     ]
   }
 ]

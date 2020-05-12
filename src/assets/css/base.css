@@ -61,3 +61,7 @@ a {
 .el-pagination{
   margin-top: 15px;
 }
+.el-cascader-panel{
+  height: 200px !important;
+  font-size: 12px !important;
+}
