@@ -10,6 +10,7 @@ const Users = () => import('views/home/childCpn/Users')
 const Rights = () => import('views/home/childCpn/power/Rights')
 const Roles = () => import('views/home/childCpn/power/Roles')
 const Category = () => import('views/home/childCpn/goods/Category')
+const Params = () => import('views/home/childCpn/goods/Params')
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -23,7 +24,8 @@ const routes = [
       { path: '/users', component: Users },
       { path: '/rights', component: Rights },
       { path: '/roles', component: Roles },
-      { path: '/categories', component: Category }
+      { path: '/categories', component: Category },
+      { path: '/params', component: Params }
     ]
   }
 ]
