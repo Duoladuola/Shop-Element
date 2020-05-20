@@ -65,3 +65,15 @@ a {
   height: 200px !important;
   font-size: 12px !important;
 }
+.el-step__title{
+  font-size: 13px !important;
+}
+.el-tabs__item{
+  font-size: 13px !important;
+}
+.quill-editor{
+  min-height: 300px;
+}
+.ql-container{
+  min-height: 300px;
+}
