@@ -13,6 +13,7 @@ const Category = () => import('views/home/childCpn/goods/Category')
 const Params = () => import('views/home/childCpn/goods/Params')
 const GoodsList = () => import('views/home/childCpn/goods/GoodsList')
 const Add = () => import('views/home/childCpn/goods/Add')
+const Order = () => import('views/home/childCpn/order/Order')
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -29,7 +30,8 @@ const routes = [
       { path: '/categories', component: Category },
       { path: '/params', component: Params },
       { path: '/goods', component: GoodsList },
-      { path: '/goods/add', component: Add }
+      { path: '/goods/add', component: Add },
+      { path: '/orders', component: Order }
     ]
   }
 ]
