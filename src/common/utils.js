@@ -34,3 +34,13 @@ export const deepClone = (target) => {
     return target
   }
 }
+export const mixin = {
+  methods: {
+    requestSuccess (tips) {
+      this.$message.success(tips)
+    },
+    requestError (tips) {
+      this.$message.error(tips)
+    }
+  }
+}
