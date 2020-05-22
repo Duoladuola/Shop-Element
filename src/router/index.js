@@ -14,6 +14,7 @@ const Params = () => import('views/home/childCpn/goods/Params')
 const GoodsList = () => import('views/home/childCpn/goods/GoodsList')
 const Add = () => import('views/home/childCpn/goods/Add')
 const Order = () => import('views/home/childCpn/order/Order')
+const Report = () => import('views/home/childCpn/report/Report')
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -31,7 +32,8 @@ const routes = [
       { path: '/params', component: Params },
       { path: '/goods', component: GoodsList },
       { path: '/goods/add', component: Add },
-      { path: '/orders', component: Order }
+      { path: '/orders', component: Order },
+      { path: '/reports', component: Report }
     ]
   }
 ]
