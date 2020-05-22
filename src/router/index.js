@@ -2,19 +2,23 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
-
-const Login = () => import('components/common/login/Login')
-const Home = () => import('views/home/Home')
-const Welcome = () => import('views/home/childCpn/Welcome')
-const Users = () => import('views/home/childCpn/Users')
-const Rights = () => import('views/home/childCpn/power/Rights')
-const Roles = () => import('views/home/childCpn/power/Roles')
-const Category = () => import('views/home/childCpn/goods/Category')
-const Params = () => import('views/home/childCpn/goods/Params')
-const GoodsList = () => import('views/home/childCpn/goods/GoodsList')
-const Add = () => import('views/home/childCpn/goods/Add')
-const Order = () => import('views/home/childCpn/order/Order')
-const Report = () => import('views/home/childCpn/report/Report')
+// 一组
+const Login = () => import(/* webpackChunkName: "login-home-welcome" */ 'components/common/login/Login')
+const Home = () => import(/* webpackChunkName: "login-home-welcome" */ 'views/home/Home')
+const Welcome = () => import(/* webpackChunkName: "login-home-welcome" */ 'views/home/childCpn/Welcome')
+// 二组
+const Users = () => import(/* webpackChunkName: "user-right-role" */ 'views/home/childCpn/Users')
+const Rights = () => import(/* webpackChunkName: "user-right-role" */ 'views/home/childCpn/power/Rights')
+const Roles = () => import(/* webpackChunkName: "user-right-role" */ 'views/home/childCpn/power/Roles')
+// 三组
+const Category = () => import(/* webpackChunkName: "cate-params" */ 'views/home/childCpn/goods/Category')
+const Params = () => import(/* webpackChunkName: "cate-params" */ 'views/home/childCpn/goods/Params')
+// 四组
+const GoodsList = () => import(/* webpackChunkName: "good-addgood" */ 'views/home/childCpn/goods/GoodsList')
+const Add = () => import(/* webpackChunkName: "good-addgood" */ 'views/home/childCpn/goods/Add')
+// 五组
+const Order = () => import(/* webpackChunkName: "order-report" */ 'views/home/childCpn/order/Order')
+const Report = () => import(/* webpackChunkName: "order-report" */ 'views/home/childCpn/report/Report')
 
 const routes = [
   { path: '/', redirect: '/login' },

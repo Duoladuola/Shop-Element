@@ -1,5 +1,7 @@
 <template>
-  <div>welcome</div>
+  <div>
+    <p>欢迎使用！</p>
+  </div>
 </template>
 
 <script>

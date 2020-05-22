@@ -1,4 +1,8 @@
 import Axios from 'axios'
+// 美化：加进度条
+import NProgress from 'nprogress'
+// 通过cdn引入了
+// import 'nprogress/nprogress.css'
 export function request (config) {
   // 1、创建axios实例
   const instance = Axios.create({
@@ -9,12 +13,14 @@ export function request (config) {
   // 2.1 请求拦截
   instance.interceptors.request.use(config => {
     config.headers.Authorization = window.sessionStorage.getItem('token')
+    NProgress.start()
     return config
   }, err => {
     console.log(err)
   })
   // 2.2 响应拦截
   instance.interceptors.response.use(res => {
+    NProgress.done()
     return res.data
   }, err => {
     console.log(err)

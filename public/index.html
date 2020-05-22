@@ -5,7 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title><%= htmlWebpackPlugin.options.isProd? '' : 'dev-' %>电商管理系统</title>
+    <% if (htmlWebpackPlugin.options.isProd) { %>
+    <!-- nprogress样式表文件 -->
+    <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
+    <!-- 富文本的样式 -->
+    <link href="http://cdn.staticfile.org/quill/1.3.6/quill.snow.min.css" rel="stylesheet">
+    <link href="http://cdn.staticfile.org/quill/1.3.6/quill.bubble.min.css" rel="stylesheet">
+    <link href="http://cdn.staticfile.org/quill/1.3.6/quill.core.min.css" rel="stylesheet">
+    <!-- 其他js文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-router@3.2.0/dist/vue-router.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.min.js"></script>
+    <script src="https://lib.baomitu.com/echarts/4.7.0/echarts.common.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+    <script src="//cdn.staticfile.org/quill/1.3.6/quill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-quill-editor@3.0.6/dist/vue-quill-editor.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <% } %>
   </head>
   <body>
     <noscript>
